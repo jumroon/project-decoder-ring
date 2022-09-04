@@ -54,8 +54,6 @@ const caesarModule = (function () {
   const createShift = (shiftBy, alphabet, encode = true) => {
     const shift = {};
     alphabet.forEach((letter, index) => {
-      // console.log(letter, index);
-
       const shiftAndIndexSum = index + shiftBy;
 
       const replacementLetterIndex = getReplacementLetterIndex(
@@ -83,12 +81,13 @@ const caesarModule = (function () {
         return character;
       })
       .join("");
-
-    // console.log(shiftedMessage);
   };
 
-  const caesar = (input, shift, encode = true) => {
-    return shiftMessage(input, encode ? shift : -shift);
+  const caesar = (message, shift, encode = true) => {
+    if (shift === 0 || shift > 25 || shift < -25) {
+      return false;
+    }
+    return shiftMessage(message.toLowerCase(), encode ? shift : -shift);
   };
 
   return {
