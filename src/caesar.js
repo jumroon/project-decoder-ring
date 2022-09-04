@@ -33,6 +33,8 @@ const caesarModule = (function () {
     "y",
     "z",
   ];
+  const ALPHABET_SIZE = ALPHABET.length;
+  const MAX_ALPHABET_INDEX = ALPHABET_SIZE - 1;
 
   const getReplacementLetterIndex = (shiftAndIndexSum, alphabet) => {
     const maxAlphabetIndex = alphabet.length - 1;
@@ -84,7 +86,11 @@ const caesarModule = (function () {
   };
 
   const caesar = (message, shift, encode = true) => {
-    if (shift === 0 || shift > 25 || shift < -25) {
+    if (
+      shift === 0 ||
+      shift > MAX_ALPHABET_INDEX ||
+      shift < -MAX_ALPHABET_INDEX
+    ) {
       return false;
     }
     return shiftMessage(message.toLowerCase(), encode ? shift : -shift);
