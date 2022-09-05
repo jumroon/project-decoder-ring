@@ -17,7 +17,7 @@ const polybiusModule = (function () {
     b: 21,
     c: 31,
     d: 41,
-    e: "51",
+    e: 51,
     f: 12,
     g: 22,
     h: 32,
@@ -31,8 +31,8 @@ const polybiusModule = (function () {
     p: 53,
     q: 14,
     r: 24,
-    s: "34",
-    t: "44",
+    s: 34,
+    t: 44,
     u: 54,
     v: 15,
     w: 25,
@@ -41,19 +41,15 @@ const polybiusModule = (function () {
     z: 55,
     " ": " ",
   };
-  // console.log(POLYBIUS_ENCODE["z"]);
 
   const getLetter = (column, row) => {
     return POLYBIUS_SQUARE[row - 1][column - 1];
   };
 
-  // "thinkful" -> "4432423352125413"
-
   function decodeWord(word) {
     let decodedMessage = "";
     const splitMessage = word.split("");
     for (let i = 0; i < splitMessage.length; i = i + 2) {
-      console.log(splitMessage[i], splitMessage[i + 1]);
       decodedMessage =
         decodedMessage + getLetter(splitMessage[i], splitMessage[i + 1]);
     }
@@ -66,8 +62,7 @@ const polybiusModule = (function () {
     if (!allWordsAreEven) {
       return false;
     }
-    const decodedMessage = words.map((word) => decodeWord(word)).join(" ");
-    return decodedMessage;
+    return words.map((word) => decodeWord(word)).join(" ");
   }
 
   function encodeMessage(message) {
@@ -78,18 +73,9 @@ const polybiusModule = (function () {
     }
     return encodedMessage;
   }
-  // console.log(POLYBIUS_ENCODE["s"]);
-  // console.log(decode("11213141512 11"));
-
-  //"test message"
-  // console.log("B", getLetter(2, 1));
-  // console.log(decode("4432423352125413"));
 
   function polybius(input, encode = true) {
-    if (encode === true) {
-      return encodeMessage(input);
-    }
-    return decodeMessage(input);
+    return encode ? encodeMessage(input) : decodeMessage(input);
   }
 
   return {
